@@ -1,1 +1,51 @@
-
+# ─── FIREFOX NODES ───────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-node-firefox
+  namespace: selenium
+  labels:
+    app: selenium-node-firefox
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: selenium-node-firefox
+  template:
+    metadata:
+      labels:
+        app: selenium-node-firefox
+    spec:
+      containers:
+      - name: firefox
+        image: selenium/node-firefox:4.33.0
+        env:
+        - name: SE_EVENT_BUS_HOST
+          value: "selenium-hub"
+        - name: SE_EVENT_BUS_PUBLISH_PORT
+          value: "4442"
+        - name: SE_EVENT_BUS_SUBSCRIBE_PORT
+          value: "4443"
+        - name: SE_NODE_MAX_SESSIONS
+          value: "2"
+        - name: SE_NODE_SESSION_TIMEOUT
+          value: "3600"
+        - name: SE_NODE_GRID_URL
+          value: "http://zprojects-u18-aio:30444"
+        - name: SE_VNC_NO_PASSWORD
+          value: "1"
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "4Gi"
+            cpu: "1"
+        volumeMounts:
+        - mountPath: /dev/shm
+          name: dshm
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+          sizeLimit: 1Gi
