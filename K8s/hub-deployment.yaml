@@ -1,1 +1,37 @@
-
+# ─── SELENIUM HUB ────────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-hub
+  namespace: selenium
+  labels:
+    app: selenium-hub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: selenium-hub
+  template:
+    metadata:
+      labels:
+        app: selenium-hub
+    spec:
+      containers:
+      - name: selenium-hub
+        image: selenium/hub:4.33.0
+        ports:
+        - containerPort: 4444
+        - containerPort: 4442
+        - containerPort: 4443
+        env:
+        - name: SE_SESSION_REQUEST_TIMEOUT
+          value: "300"
+        - name: SE_SESSION_RETRY_INTERVAL
+          value: "5"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
