@@ -1,1 +1,21 @@
-
+#─── SELENIUM HUB SERVICE ────────────────────────────────────────────────────
+apiVersion: v1
+kind: Service
+metadata:
+  name: selenium-hub
+  namespace: selenium
+spec:
+  type: NodePort
+  selector:
+    app: selenium-hub
+  ports:
+  - name: web
+    port: 4444
+    targetPort: 4444
+    nodePort: 30444
+  - name: publish
+    port: 4442
+    targetPort: 4442
+  - name: subscribe
+    port: 4443
+    targetPort: 4443
