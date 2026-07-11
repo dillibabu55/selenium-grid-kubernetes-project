@@ -1,1 +1,118 @@
 
+kubernetes-selenium-grid/
+│
+├── .github/
+│   └── workflows/
+│       ├── ci.yaml
+│       ├── release.yaml
+│       └── security-scan.yaml
+│
+├── docker/
+│   ├── selenium-hub/
+│   │   └── Dockerfile
+│   ├── chrome-node/
+│   │   └── Dockerfile
+│   ├── firefox-node/
+│   │   └── Dockerfile
+│   └── edge-node/
+│       └── Dockerfile
+│
+├── k8s/
+│   ├── base/
+│   │   ├── namespace.yaml
+│   │   ├── configmap.yaml
+│   │   ├── secret.yaml
+│   │   ├── selenium-hub-deployment.yaml
+│   │   ├── selenium-hub-service.yaml
+│   │   ├── chrome-node-deployment.yaml
+│   │   ├── firefox-node-deployment.yaml
+│   │   ├── edge-node-deployment.yaml
+│   │   ├── ingress.yaml
+│   │   ├── service-account.yaml
+│   │   ├── role.yaml
+│   │   ├── role-binding.yaml
+│   │   ├── network-policy.yaml
+│   │   ├── resource-quota.yaml
+│   │   ├── hpa.yaml
+│   │   └── pod-disruption-budget.yaml
+│   │
+│   └── overlays/
+│       ├── dev/
+│       │   ├── kustomization.yaml
+│       │   └── patch.yaml
+│       ├── staging/
+│       │   ├── kustomization.yaml
+│       │   └── patch.yaml
+│       └── production/
+│           ├── kustomization.yaml
+│           └── patch.yaml
+│
+├── helm/
+│   └── selenium-grid/
+│       ├── Chart.yaml
+│       ├── values.yaml
+│       ├── values-dev.yaml
+│       ├── values-prod.yaml
+│       ├── templates/
+│       │   ├── deployment.yaml
+│       │   ├── service.yaml
+│       │   ├── ingress.yaml
+│       │   ├── configmap.yaml
+│       │   ├── service-account.yaml
+│       │   ├── hpa.yaml
+│       │   └── networkpolicy.yaml
+│       └── charts/
+│
+├── monitoring/
+│   ├── prometheus/
+│   │   ├── prometheus.yaml
+│   │   └── alerts.yaml
+│   ├── grafana/
+│   │   ├── dashboard.json
+│   │   └── datasource.yaml
+│   └── loki/
+│       └── loki-config.yaml
+│
+├── tests/
+│   ├── java/
+│   │   └── SeleniumGridTest.java
+│   ├── python/
+│   │   └── selenium_test.py
+│   └── javascript/
+│       └── selenium.test.js
+│
+├── scripts/
+│   ├── deploy.sh
+│   ├── destroy.sh
+│   ├── scale-grid.sh
+│   ├── health-check.sh
+│   ├── verify.sh
+│   └── cleanup.sh
+│
+├── docs/
+│   ├── architecture.md
+│   ├── deployment-guide.md
+│   ├── troubleshooting.md
+│   ├── security.md
+│   ├── api.md
+│   └── images/
+│       ├── architecture.png
+│       ├── selenium-ui.png
+│       ├── grafana-dashboard.png
+│       └── prometheus-dashboard.png
+│
+├── examples/
+│   ├── java-run-example.sh
+│   ├── python-run-example.sh
+│   └── javascript-run-example.sh
+│
+├── .dockerignore
+├── .gitignore
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── Makefile
+├── README.md
+├── SECURITY.md
+├── VERSION
+└── Dockerfile
